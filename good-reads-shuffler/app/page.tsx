@@ -15,8 +15,8 @@ import Confetti from 'react-confetti-boom';
 
 export default function Home() {
 	const searchParams = useSearchParams() 
-	const [books, setBooks] = useState([]);
-	const [book, setBook] = useState();
+	const [books, setBooks] = useState<any[]>([]);
+	const [book, setBook] = useState<any>();
 	const [username, setUsername] = useState(searchParams.get('username') || "");
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(false);
@@ -95,7 +95,7 @@ export default function Home() {
 			{isLoading && (
 				<Card className="col-span-12 sm:col-span-4">
 					<div className="z-0 object-cover" style={{width: "450px", height: "675px"}}>
-						<Spinner label="Loading your book!" style={{ height: "100%", width: "100%" }} size="lg" color="success" labelColor="default"/>
+						<Spinner label="Loading your book!" style={{ height: "100%", width: "100%" }} size="lg" color="success" />
 					</div>
 				</Card>
 			)}
