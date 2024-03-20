@@ -20,7 +20,7 @@ export default function Home() {
 	const [username, setUsername] = useState(searchParams.get('username') || "");
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(false);
-	const urlPrefix = process.env.API_URL || "http://localhost:5000/api/";
+	const urlPrefix = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/";
 
 	useEffect(() => {
 		setUsername(searchParams.get('username') || "");
