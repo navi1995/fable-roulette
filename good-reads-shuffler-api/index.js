@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 app.get("/api/good-reads-books/:username/:shelf", async (req, res) => {
 	const { username, shelf } = req.params;
+	console.log("New request");
 
 	try {
 		const books = await scrapeGoodreadsShelf(username, shelf);
