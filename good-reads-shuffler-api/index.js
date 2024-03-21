@@ -7,6 +7,10 @@ const app = express();
 app.use(cors());
 const PORT = process.env.PORT || 5000;
 
+app.get("/api/ping", async(req, res) => {
+	res.status(200).send("pong");
+})
+
 app.get("/api/good-reads-books/:username/:shelf", async (req, res) => {
 	const { username, shelf } = req.params;
 	console.log("New request");

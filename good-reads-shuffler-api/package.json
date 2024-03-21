@@ -19,7 +19,7 @@
   "scripts": {
     "build": "echo \"No build\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "pm2 start index.js"
   },
   "author": "",
   "license": "ISC"
