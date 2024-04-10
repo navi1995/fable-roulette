@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@nextui-org/button";
-import { Image } from "@nextui-org/image";;
+import { Image } from "@nextui-org/image";
 import { title, subtitle } from "@/components/primitives";
 import { Input } from "@nextui-org/input";
 import { Card, CardBody, CardFooter } from "@nextui-org/card";
@@ -11,7 +11,6 @@ import Confetti from 'react-confetti-boom';
 
 export default function Home() {
 	const searchParams = useSearchParams() 
-	const [books, setBooks] = useState<any[]>([]);
 	const [book, setBook] = useState<any>();
 	const [username, setUsername] = useState(searchParams.get('username') || "");
 	const [isLoading, setIsLoading] = useState(false);
@@ -22,18 +21,11 @@ export default function Home() {
 		setUsername(searchParams.get('username') || "");
 	}, [searchParams.get('username')]);
 
-	useEffect(() => {
-		console.log(books.length);
-		if (books.length > 0) {
-			chooseRandomBook();
-		}
-	}, [books]);
-
 	const handleSearch = async () => {
 		setBook(undefined);
 		setIsLoading(true);
 		setError(false);
-		const response = await fetch(`${urlPrefix}good-reads-books/${username}/to-read`);
+		const response = await fetch(`${urlPrefix}fable-books/${username}`);
   
 		if (!response.ok) {
 			console.log("error");
@@ -43,28 +35,22 @@ export default function Home() {
 		}
 		
 		const data = await response.json();
-		console.log(data);
-		setBooks(data);
-	} 
-	
-	const chooseRandomBook = () => {
-		const randomIndex = Math.floor(Math.random() * books.length);
-		console.log(books[randomIndex]);
-		setBook(books[randomIndex]);
+		setBook(data);
 		setIsLoading(false);
-	}
+	} 
 
 	return (
 		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
 			<div className="inline-block max-w-lg text-center justify-center">
-				<h1 className={title()}>GoodReads&nbsp;</h1>
+				<h1 className={title()} style={{textDecoration: "line-through"}}>GoodReads&nbsp;</h1>
+				<h1 className={title()}>Fable&nbsp;</h1>
 				<h1 className={title({ color: "green" })}>Roulette&nbsp;</h1>
 				<br />
 				<h2 className={subtitle({ class: "mt-4" })}>
 					Enter your Username below, and click the button!
 				</h2>
 				<h2 className={subtitle({ class: "mt-4" })}>
-					A random book from your to-read shelf gets picked.
+					A random book from your to-read list gets picked.
 				</h2>
 				<br />
 				<Input
@@ -74,7 +60,7 @@ export default function Home() {
 						input: "text-sm",
 					}}
 					labelPlacement="outside"
-					placeholder="GoodReads Username (Format 132465789-john-doe)"
+					placeholder="Fable Username (Format johnd-512344179594)"
 					value={username}
 					onChange={(e) => setUsername(e.target.value)}
 				/>
