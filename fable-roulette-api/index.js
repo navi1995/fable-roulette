@@ -52,7 +52,7 @@ async function getFableBooksFromList(username, listName) {
 			title: bookData.title,
 			author: bookData.authors.map(author => author.name).join(', '),
 			imageUrl: bookData.cover_image,
-			rating: bookData.review_average.toFixed(2)
+			rating: bookData.review_average ? bookData.review_average.toFixed(2) : bookData.review_average
 		}
 	} catch (error) {
 		console.error("Error getting book:", error);
